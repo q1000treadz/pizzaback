@@ -1,0 +1,43 @@
+{
+   "name": "pizzaback",
+   "version": "0.0.1",
+   "description": "Awesome project developed with TypeORM.",
+   "devDependencies": {
+      "@types/bcrypt": "^5.0.0",
+      "@types/cookie-parser": "^1.4.2",
+      "@types/express": "^4.17.13",
+      "@types/jsonwebtoken": "^8.5.6",
+      "@types/multer": "^1.4.7",
+      "@types/node": "^8.0.29",
+      "@types/nodemailer": "^6.4.4",
+      "@typescript-eslint/eslint-plugin": "^5.4.0",
+      "@typescript-eslint/parser": "^5.4.0",
+      "eslint": "^8.2.0",
+      "eslint-config-airbnb-base": "^15.0.0",
+      "eslint-plugin-import": "^2.25.2",
+      "prettier": "2.4.1",
+      "ts-node": "3.3.0",
+      "typescript": "3.3.3333"
+   },
+   "dependencies": {
+      "@joi/date": "^2.1.0",
+      "bcrypt": "^5.0.1",
+      "body-parser": "^1.19.0",
+      "celebrate": "^15.0.0",
+      "cookie-parser": "^1.4.6",
+      "express": "^4.17.1",
+      "fs": "^0.0.1-security",
+      "joi": "^17.4.2",
+      "jsonwebtoken": "^8.5.1",
+      "multer": "^1.4.3",
+      "nodemailer": "^6.7.1",
+      "pg": "^8.4.0",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.40"
+   },
+   "scripts": {
+      "start": "ts-node src/index.ts",
+      "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+      "lint": "eslint --fix --ext .ts,.tsx ."
+   }
+}

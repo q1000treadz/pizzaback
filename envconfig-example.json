@@ -1,0 +1,7 @@
+{
+    "ACCESS_TOKEN_KEY":"12213",
+    "REFRESH_TOKEN_KEY":"43243",
+    "SMTP_HOST":"mail.ru",
+    "SMTP_USER":"yourmail@mail.ru",
+    "SMTP_PASSWORD":"generatedpassword"
+}
