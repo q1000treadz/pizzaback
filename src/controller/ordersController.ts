@@ -85,6 +85,7 @@ class OrdersController {
     connection
       .then(async (connection) => {
         const OrdersResult = await connection.manager.findOne(Orders, id);
+        if (OrdersResult === undefined) res.status(400).json({ error: 'bad id' });
         res.status(200).json(OrdersResult);
       })
       .catch((error) => {

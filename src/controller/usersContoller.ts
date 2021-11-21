@@ -108,6 +108,7 @@ class UsersController {
       .then(async (connection) => {
         const { id, phone, type } = req.body.user;
         const user = await connection.manager.findOne(Users, id);
+        if (user === undefined) res.status(400).json({ error: 'bad id' });
         res.status(200).json(user);
       })
       .catch((error) => {
@@ -117,7 +118,6 @@ class UsersController {
   }
 
   public updateCurrentUser(req: Request, res: Response) {
-    console.log(req.body);
     connection
       .then(async (connection) => {
         const user = new Users();

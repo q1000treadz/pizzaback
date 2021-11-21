@@ -45,8 +45,9 @@ class PizzeriasController {
     const { id } = req.params;
     connection
       .then(async (connection) => {
-        const CatalogResult = await connection.manager.findOne(Pizzerias, id);
-        res.status(200).json(CatalogResult);
+        const PizzeriasResult = await connection.manager.findOne(Pizzerias, id);
+        if (PizzeriasResult === undefined) res.status(400).json({ error: 'bad id' });
+        res.status(200).json(PizzeriasResult);
       })
       .catch((error) => {
         console.error('Error ', error);

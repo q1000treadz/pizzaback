@@ -42,19 +42,23 @@ class CatalogRoutes {
       }).unknown(),
     }), errorHandler, verifyAccessToken, checkAdminPermission, this.controller.addCatalogElement);
 
-    app.route('/catalog/picture').post(uploadPicture, celebrate({
+    app.route('/catalog/picture/:id').post(uploadPicture, celebrate({
+      [Segments.PARAMS]: Joi.object().keys({
+        id: Joi.number().integer().error(new ValidationError('', 'Id is required and has to be a integer!', {})),
+      }),
       [Segments.BODY]: Joi.object().keys({
         picture: Joi.string().error(new ValidationError('', 'Picture has to be a string!', {})),
       }),
-    }));
+    }), errorHandler, verifyAccessToken, checkAdminPermission, this.controller.setPicture);
 
     app.route('/catalog/:id').patch(celebrate({
       [Segments.PARAMS]: Joi.object().keys({
-        id: Joi.number().integer().error(new ValidationError('', 'Id is required and has to be a string!', {})),
+        id: Joi.number().integer().error(new ValidationError('', 'Id is required and has to be a integer!', {})),
       }),
       [Segments.BODY]: Joi.object().keys({
         title: Joi.string().error(new ValidationError('', 'Title has to be a string!', {})),
         description: Joi.string().error(new ValidationError('', 'Description has to be a string!', {})),
+        picture: Joi.string().error(new ValidationError('', 'Picture has to be a string!', {})),
         type: Joi.string().error(new ValidationError('', 'Type has to be a string!', {})),
         price: Joi.number().integer().error(new ValidationError('', 'Price has to be a integer!', {})),
       }),

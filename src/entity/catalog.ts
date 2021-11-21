@@ -11,7 +11,7 @@ export default class Catalog {
     @Column({ length: 128 })
       description: string;
 
-    @Column()
+    @Column({ nullable: true })
       picture: string;
 
     @Column()

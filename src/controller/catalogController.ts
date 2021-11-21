@@ -29,11 +29,10 @@ class CatalogController {
       .then(async (connection) => {
         const cathalog = new Catalog();
         const {
-          title, description, type, picture, price,
+          title, description, type, price,
         } = req.body;
         cathalog.title = title;
         cathalog.description = description;
-        cathalog.picture = picture;
         cathalog.type = type;
         cathalog.price = price;
         await connection.manager.save(cathalog);
@@ -50,6 +49,7 @@ class CatalogController {
       .then(async (connection) => {
         const { id } = req.params;
         const CatalogResult = await connection.manager.findOne(Catalog, id);
+        if (CatalogResult === undefined) res.status(400).json({ error: 'bad id' });
         res.status(200).json(CatalogResult);
       })
       .catch((error) => {
@@ -86,6 +86,25 @@ class CatalogController {
         const { id } = req.params;
         await connection.manager.delete(Catalog, id);
         res.status(200).json({});
+      })
+      .catch((error) => {
+        console.error('Error ', error);
+        res.status(400).json(error);
+      });
+  }
+
+  public setPicture(req: Request, res: Response) {
+    connection
+      .then(async (connection) => {
+        const { id } = req.params;
+        const { picture } = req.body;
+        const item = await connection.manager.findOne(Catalog, id);
+        if (item === undefined) {
+          res.status(400).json({ error: "can't find item" });
+        } else {
+          const updatedCatalog = await connection.manager.update(Catalog, id, { picture });
+          res.status(200).json(updatedCatalog);
+        }
       })
       .catch((error) => {
         console.error('Error ', error);

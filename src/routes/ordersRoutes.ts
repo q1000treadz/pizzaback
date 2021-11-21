@@ -58,7 +58,7 @@ class OrdersRoutes {
 
     app.route('/orders/:id').patch(celebrate({
       [Segments.PARAMS]: Joi.object().keys({
-        id: Joi.number().integer().error(new ValidationError('', 'Id is required and has to be a string!', {})),
+        id: Joi.number().integer().error(new ValidationError('', 'Id is required and has to be a integer!', {})),
       }),
       [Segments.BODY]: Joi.object().keys({
         client: Joi.number().integer().error(new ValidationError('', 'Client has to be a integer!', {})),
